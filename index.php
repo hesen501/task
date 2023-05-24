@@ -4,7 +4,8 @@ function NewName( string $name ) : int
 {
     $file="names.txt";
     $names=explode("\n",file_get_contents($file));
-    if(!in_array($name,$names))
+    $search=array_search( $name , $names );
+    if ($search === FALSE)
     {
         $names[]=$name;
     }
@@ -18,7 +19,7 @@ function NewName( string $name ) : int
         }
     }
     print_r($names);
-    return array_search( $name , $names );
+    return $search;
 }
 
 NewName( "Sophie" );
